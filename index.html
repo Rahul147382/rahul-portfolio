@@ -2,768 +2,486 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b14">
-  <meta name="description" content="Rahul Kesharwani's developer portfolio, skills, projects and contact information.">
-  <title>Rahul Kesharwani | Developer Portfolio</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <style>
-    :root {
-      --bg: #080b14;
-      --surface: #101625;
-      --surface2: #141d30;
-      --text: #f4f7ff;
-      --muted: #9aa8c0;
-      --blue: #66a6ff;
-      --purple: #a78bfa;
-      --border: rgba(255,255,255,.09);
-      --gradient: linear-gradient(120deg,#67b7ff,#a78bfa);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "DM Sans", sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    .container { width: min(1120px, 90%); margin: auto; }
-    .gradient-text {
-      background: var(--gradient);
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-    .section { padding: 105px 0; }
-    .section-heading { margin-bottom: 45px; }
-    .eyebrow {
-      display: inline-block;
-      color: var(--blue);
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .section-heading h2 {
-      font: 700 clamp(2rem,5vw,3rem)/1.2 "Space Grotesk",sans-serif;
-      letter-spacing: -1.5px;
-    }
-    .section-heading p { color: var(--muted); margin-top: 12px; }
-
-    /* Navigation */
-    header {
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(8,11,20,.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .logo {
-      font: 700 1.35rem "Space Grotesk",sans-serif;
-      letter-spacing: -1px;
-    }
-    .logo span { color: var(--blue); }
-    .nav-links { display: flex; align-items: center; gap: 29px; }
-    .nav-links a { font-size: .9rem; color: var(--muted); transition: .25s; }
-    .nav-links a:hover { color: var(--blue); }
-    .nav-cta {
-      border: 1px solid rgba(102,166,255,.45);
-      border-radius: 9px;
-      padding: 9px 16px;
-      color: var(--text) !important;
-    }
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      color: white;
-      border: 0;
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding: 140px 0 85px;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 560px;
-      height: 560px;
-      right: -150px;
-      top: 8%;
-      border-radius: 50%;
-      background: rgba(80,120,255,.13);
-      filter: blur(100px);
-      pointer-events: none;
-    }
-    .hero-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 55px;
-      align-items: center;
-    }
-    .availability {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.035);
-      border-radius: 30px;
-      padding: 7px 14px;
-      color: #c4d0e4;
-      font-size: .83rem;
-      margin-bottom: 28px;
-    }
-    .status-dot {
-      height: 8px; width: 8px;
-      border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 12px #4ade8070;
-    }
-    .hero h1 {
-      font: 700 clamp(3rem,7vw,5.5rem)/1.05 "Space Grotesk",sans-serif;
-      letter-spacing: -4px;
-    }
-    .hero h2 {
-      font: 500 clamp(1.25rem,3vw,1.8rem) "Space Grotesk",sans-serif;
-      color: #b9c5da;
-      margin-top: 19px;
-    }
-    .hero-copy {
-      color: var(--muted);
-      font-size: 1.04rem;
-      max-width: 560px;
-      margin: 22px 0 30px;
-    }
-    .actions { display: flex; gap: 13px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 1px solid var(--border);
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: .93rem;
-      transition: transform .25s, background .25s;
-      cursor: pointer;
-    }
-    .btn:hover { transform: translateY(-3px); }
-    .btn-primary {
-      color: #07101f;
-      background: var(--gradient);
-      border: 0;
-    }
-    .btn-secondary { background: rgba(255,255,255,.035); }
-    .socials { display: flex; gap: 20px; margin-top: 29px; }
-    .socials a { color: var(--muted); font-size: 1.25rem; transition: .2s; }
-    .socials a:hover { color: var(--blue); transform: translateY(-2px); }
-
-    .hero-card {
-      position: relative;
-      border: 1px solid rgba(167,139,250,.23);
-      background: linear-gradient(145deg,#172239,#0c111f 70%);
-      padding: 29px;
-      border-radius: 23px;
-      box-shadow: 0 30px 100px #0005;
-    }
-    .code-top { display: flex; gap: 7px; margin-bottom: 27px; }
-    .code-top i { height: 9px; width: 9px; border-radius: 50%; background: #ff6b81; }
-    .code-top i:nth-child(2) { background: #ffd166; }
-    .code-top i:nth-child(3) { background: #6ee7a0; }
-    .code-line {
-      font: .9rem/2 "Space Grotesk",monospace;
-      white-space: nowrap;
-    }
-    .code-line .purple { color: #c4a7ff; }
-    .code-line .blue { color: #7bc7ff; }
-    .code-line .green { color: #91e7bc; }
-    .code-line .orange { color: #ffc38b; }
-    .code-indent { padding-left: 20px; }
-    .code-caption { color: #71809b; font-size: .78rem; margin-top: 23px; }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 65px;
-      align-items: start;
-    }
-    .about-panel {
-      background: radial-gradient(circle at top left,#243b67,#101625 68%);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 34px;
-    }
-    .about-monogram {
-      width: 100px;
-      height: 100px;
-      display: grid;
-      place-items: center;
-      font: 700 2.7rem "Space Grotesk",sans-serif;
-      border-radius: 24px;
-      background: var(--gradient);
-      color: #0b1120;
-      margin-bottom: 24px;
-    }
-    .about-panel h3 { font: 700 1.5rem "Space Grotesk",sans-serif; }
-    .about-panel p { color: var(--muted); margin-top: 7px; }
-    .about-text p { color: var(--muted); margin-bottom: 17px; }
-    .facts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 28px;
-    }
-    .fact {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      padding: 15px;
-      border-radius: 11px;
-    }
-    .fact small { display: block; color: var(--muted); margin-bottom: 4px; }
-    .fact strong { font-size: .94rem; }
-
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-    }
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 25px;
-      transition: .25s;
-    }
-    .skill-card:hover, .project-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(102,166,255,.42);
-    }
-    .skill-icon { font-size: 1.65rem; color: var(--blue); margin-bottom: 15px; }
-    .skill-card h3 { font: 600 1.1rem "Space Grotesk",sans-serif; }
-    .skill-card p { color: var(--muted); font-size: .9rem; margin-top: 8px; }
-
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 22px;
-    }
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 27px;
-      transition: .25s;
-    }
-    .project-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 23px;
-    }
-    .project-icon {
-      display: grid;
-      place-items: center;
-      height: 49px; width: 49px;
-      border-radius: 13px;
-      background: #213455;
-      color: var(--blue);
-      font-size: 1.3rem;
-    }
-    .project-links { display: flex; gap: 14px; color: var(--muted); }
-    .project-links a:hover { color: var(--blue); }
-    .project-card h3 { font: 600 1.3rem "Space Grotesk",sans-serif; }
-    .project-card p { color: var(--muted); margin: 10px 0 20px; }
-    .tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tags span {
-      background: #1c2940;
-      color: #c5d5ee;
-      font-size: .78rem;
-      padding: 5px 10px;
-      border-radius: 6px;
-    }
-    .project-status { color: #fbbf75; font-size: .78rem; margin-top: 15px; }
-
-    /* Education */
-    .timeline { border-left: 1px solid #33415a; margin-left: 8px; padding-left: 29px; }
-    .timeline-item { position: relative; padding: 0 0 30px; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -35px; top: 8px;
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 0 5px #66a6ff18;
-    }
-    .timeline-item small { color: var(--blue); }
-    .timeline-item h3 { font: 600 1.2rem "Space Grotesk",sans-serif; margin: 5px 0; }
-    .timeline-item p { color: var(--muted); }
-
-    /* Contact */
-    .contact-box {
-      text-align: center;
-      padding: 55px 30px;
-      background: radial-gradient(circle at top,#1a2c4b,#101625 65%);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-    }
-    .contact-box h2 {
-      font: 700 clamp(2rem,5vw,3rem)/1.2 "Space Grotesk",sans-serif;
-    }
-    .contact-box p { color: var(--muted); max-width: 530px; margin: 17px auto 25px; }
-    footer { border-top: 1px solid var(--border); padding: 25px 0; }
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    footer p { color: var(--muted); font-size: .85rem; }
-
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s, transform .65s; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
-      .reveal { opacity: 1; transform: none; }
-    }
-    @media (max-width: 850px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero-card { max-width: 520px; }
-      .about-grid { grid-template-columns: 1fr; gap: 30px; }
-      .skills-grid { grid-template-columns: repeat(2,1fr); }
-      .section { padding: 78px 0; }
-    }
-    @media (max-width: 650px) {
-      .menu-toggle { display: block; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px; left: 0; width: 100%;
-        padding: 23px 5%;
-        background: #0c111f;
-        border-bottom: 1px solid var(--border);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 18px;
-      }
-      .nav-links.open { display: flex; }
-      .nav-cta { text-align: center; }
-      .hero { min-height: auto; padding: 145px 0 70px; }
-      .hero h1 { letter-spacing: -2px; }
-      .hero-card { padding: 19px; overflow-x: auto; }
-      .code-line { font-size: .76rem; }
-      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
-      .facts { grid-template-columns: 1fr; }
-      .section-heading { margin-bottom: 30px; }
-      .about-panel { padding: 25px; }
-      .contact-box { padding: 40px 20px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BrandPilot | Strategy Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0b0d12;
+  --panel:#12151d;
+  --panel2:#181c27;
+  --line:#282d3a;
+  --text:#f4f5fa;
+  --muted:#9299ac;
+  --accent:#c3f36b;
+  --purple:#b5a0ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.layout{display:grid;grid-template-columns:245px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;padding:27px 17px;border-right:1px solid var(--line);background:#0e1017}
+.logo{font:700 25px "Space Grotesk";padding:0 12px}
+.logo span{color:var(--accent)}
+.tagline{font-size:11px;letter-spacing:2px;color:var(--muted);padding:8px 12px 28px}
+.nav-label{font-size:10px;color:#737c90;letter-spacing:1.5px;padding:14px 12px 9px}
+.nav button{width:100%;text-align:left;color:#aeb5c6;border:0;background:transparent;border-radius:9px;padding:12px;font-size:13px;margin:2px 0}
+.nav button:hover,.nav button.active{background:#222733;color:var(--accent)}
+.nav button span{display:inline-block;width:28px}
+.side-note{position:absolute;bottom:24px;left:20px;right:20px;background:#191f2b;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:12px;color:var(--muted);line-height:1.8}
+.side-note strong{color:var(--accent)}
+main{min-width:0;padding:30px clamp(17px,4vw,48px) 50px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-bottom:25px;border-bottom:1px solid var(--line)}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.breadcrumb b{color:var(--text)}
+.top-actions{display:flex;gap:9px}
+.btn{border:1px solid var(--line);border-radius:8px;padding:10px 14px;color:var(--text);background:var(--panel2);font-size:12px}
+.btn.primary{background:var(--accent);color:#10130a;border-color:var(--accent);font-weight:700}
+.hero{padding:36px 0 28px}
+.eyebrow{font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif}
+h1{font-size:clamp(30px,4.3vw,48px);letter-spacing:-1.8px;line-height:1.15;margin:12px 0}
+h1 em{color:var(--accent);font-style:normal}
+.hero p,.muted{color:var(--muted);font-size:13px;line-height:1.8}
+.hero p{max-width:670px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:25px 0 36px}
+.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:13px}
+.stat{padding:19px}
+.stat label{display:block;font-size:11px;color:var(--muted)}
+.stat strong{display:block;font:600 26px "Space Grotesk";margin:10px 0 4px}
+.stat small{font-size:10px;color:var(--accent)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:35px 0 17px}
+.section-head h2{font-size:21px}
+.section-head p{color:var(--muted);font-size:12px;margin-top:5px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{padding:21px;min-width:0}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px}
+.icon{height:38px;width:38px;display:grid;place-items:center;border-radius:10px;background:#272c3a;color:var(--accent);font-size:19px}
+.pill{font-size:10px;padding:5px 8px;border-radius:20px;background:#242b32;color:var(--accent)}
+.card h3{font-size:16px;margin-bottom:8px}
+.card p{font-size:12px;color:var(--muted);line-height:1.8}
+.card .btn{margin-top:17px}
+.card:hover{border-color:#59614b}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.tags span{font-size:10px;color:#b9c1d3;border:1px solid var(--line);padding:5px 8px;border-radius:5px}
+.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}
+.field label{font-size:11px;color:#bac2d3}
+.field input,.field select,.field textarea{width:100%;background:#0d1017;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:11px;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:75px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.full{grid-column:1/-1}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.output{padding:18px;background:#0c1110;border:1px solid #38442c;border-radius:10px;margin-top:16px;line-height:1.9;font-size:12px;white-space:pre-wrap}
+.palette{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:15px 0}
+.swatch{height:75px;border-radius:9px;border:1px solid #ffffff16;cursor:pointer}
+.swatch small{display:block;margin-top:81px;text-align:center;color:var(--muted);font-size:10px}
+.palette-wrap{padding-bottom:30px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{text-align:left;padding:13px 11px;border-bottom:1px solid var(--line);font-size:11px}
+th{color:var(--muted);font-weight:500}
+td{color:#e4e8f1}
+td input,td select{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:5px;padding:6px;width:100%;min-width:75px}
+td select option{background:var(--panel)}
+.delete{color:#ff8d9a;background:none;border:0;padding:5px}
+.empty{text-align:center;color:var(--muted);padding:30px}
+.footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:10px}
+.mobile-head{display:none}
+.notice{color:#b8c0d1;font-size:11px;line-height:1.8;margin-top:13px}
+@media(max-width:1000px){
+.layout{grid-template-columns:205px 1fr}
+.stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+.layout{display:block}
+.sidebar{position:fixed;z-index:10;top:0;left:-260px;width:245px;transition:left .25s;box-shadow:10px 0 40px #0008}
+.sidebar.open{left:0}
+.mobile-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 17px;border-bottom:1px solid var(--line)}
+.mobile-head button{background:none;border:0;color:var(--text);font-size:22px}
+main{padding:17px}
+.topbar{padding-top:15px}
+.stats{gap:9px}
+.stat{padding:14px}
+.stat strong{font-size:22px}
+.grid2{grid-template-columns:1fr}
+.section-head{align-items:start;flex-direction:column}
+h1{letter-spacing:-1px}
+}
+@media(max-width:400px){
+.form-grid{grid-template-columns:1fr}
+.full{grid-column:auto}
+.stats{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
-
 <body>
-  <header>
-    <nav class="container" aria-label="Main navigation">
-      <a class="logo" href="#home">Rahul<span>.</span></a>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="logo">brand<span>pilot.</span></div>
+  <div class="tagline">STRATEGY STUDIO</div>
+  <div class="nav-label">WORKSPACE</div>
+  <div class="nav">
+    <button class="active" data-page="overview"><span>◈</span> Overview</button>
+    <button data-page="brands"><span>◇</span> Brand Selection</button>
+    <button data-page="audience"><span>◎</span> Target Audience</button>
+    <button data-page="identity"><span>✳</span> Brand Identity</button>
+    <button data-page="content"><span>▦</span> Content Planning</button>
+  </div>
+  <div class="nav-label">MANAGEMENT</div>
+  <div class="nav">
+    <button data-page="campaigns"><span>↗</span> Campaign Planner</button>
+    <button data-page="report"><span>▤</span> Strategy Report</button>
+  </div>
+  <div class="side-note"><strong>STRATEGY TIP</strong><br>Know your audience before choosing your message. Strong brands solve a clear customer problem.</div>
+</aside>
 
-      <button class="menu-toggle" id="menuToggle"
-        aria-label="Toggle navigation" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#contact" class="nav-cta">Contact Me <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="availability">
-            <span class="status-dot"></span>
-            Open to learning and opportunities
-          </div>
-
-          <h1>Hi, I'm <span class="gradient-text">Rahul<br>Kesharwani.</span></h1>
-          <h2>Aspiring Software Developer</h2>
-
-          <p class="hero-copy">
-            I'm a BCA student passionate about programming, web development
-            and building useful digital solutions. I'm continuously improving
-            my skills by learning and working on projects.
-          </p>
-
-          <div class="actions">
-            <a class="btn btn-primary" href="#projects">
-              Explore My Work <i class="fa-solid fa-arrow-right"></i>
-            </a>
-            <a class="btn btn-secondary" href="#contact">
-              Let's Connect <i class="fa-regular fa-paper-plane"></i>
-            </a>
-          </div>
-
-          <div class="socials">
-            <!-- Replace YOUR_USERNAME with your actual GitHub username -->
-            <a href="https://github.com/YOUR_USERNAME" target="_blank"
-              rel="noopener noreferrer" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <!-- Replace YOUR_LINKEDIN with your LinkedIn username -->
-            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/"
-              target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a href="#contact" aria-label="Email">
-              <i class="fa-regular fa-envelope"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-card reveal" aria-label="Code preview">
-          <div class="code-top"><i></i><i></i><i></i></div>
-          <div class="code-line"><span class="purple">const</span> developer = {</div>
-          <div class="code-line code-indent"><span class="blue">name</span>: <span class="green">"Rahul Kesharwani"</span>,</div>
-          <div class="code-line code-indent"><span class="blue">education</span>: <span class="green">"BCA"</span>,</div>
-          <div class="code-line code-indent"><span class="blue">university</span>: <span class="green">"Silver Oak"</span>,</div>
-          <div class="code-line code-indent"><span class="blue">skills</span>: [</div>
-          <div class="code-line code-indent code-indent"><span class="orange">"HTML"</span>, <span class="orange">"CSS"</span>,</div>
-          <div class="code-line code-indent code-indent"><span class="orange">"Java"</span>, <span class="orange">"C++"</span></div>
-          <div class="code-line code-indent">],</div>
-          <div class="code-line code-indent"><span class="blue">mindset</span>: <span class="green">"Always learning"</span></div>
-          <div class="code-line">};</div>
-          <div class="code-caption"><i class="fa-solid fa-code"></i> Turning ideas into projects, one step at a time.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Get to know me</span>
-          <h2>About <span class="gradient-text">Me</span></h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-panel reveal">
-            <div class="about-monogram">RK</div>
-            <h3>Rahul Kesharwani</h3>
-            <p>BCA Student · Aspiring Developer</p>
-            <p><i class="fa-solid fa-location-dot"></i> Ahmedabad, Gujarat, India</p>
-          </div>
-
-          <div class="about-text reveal">
-            <p>
-              Hello! I'm Rahul, a Bachelor of Computer Applications student
-              at Silver Oak University. I'm interested in software development
-              and enjoy understanding how technology can solve everyday problems.
-            </p>
-            <p>
-              My current skills include HTML, CSS, Java and C++. I also explore
-              Python and work on strengthening my programming fundamentals.
-              My goal is to build practical projects, learn from feedback and
-              grow as a developer.
-            </p>
-
-            <div class="facts">
-              <div class="fact">
-                <small><i class="fa-solid fa-graduation-cap"></i> Education</small>
-                <strong>Bachelor of Computer Applications</strong>
-              </div>
-              <div class="fact">
-                <small><i class="fa-solid fa-laptop-code"></i> Focus</small>
-                <strong>Development & Programming</strong>
-              </div>
-              <div class="fact">
-                <small><i class="fa-solid fa-location-dot"></i> Location</small>
-                <strong>Ahmedabad, India</strong>
-              </div>
-              <div class="fact">
-                <small><i class="fa-solid fa-lightbulb"></i> Approach</small>
-                <strong>Learn by building</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skills" style="background:#0b101c">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">What I work with</span>
-          <h2>My <span class="gradient-text">Skills</span></h2>
-          <p>Technologies I'm learning and using to build my foundation.</p>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
-            <h3>HTML5</h3>
-            <p>Semantic structure, accessible content and page layouts.</p>
-          </article>
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
-            <h3>CSS3</h3>
-            <p>Responsive layouts, styling, transitions and animations.</p>
-          </article>
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-brands fa-java"></i></div>
-            <h3>Java</h3>
-            <p>Programming fundamentals and object-oriented concepts.</p>
-          </article>
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-            <h3>C++</h3>
-            <p>Problem solving, logic and core programming concepts.</p>
-          </article>
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
-            <h3>Python</h3>
-            <p>Exploring programming fundamentals and practical use cases.</p>
-          </article>
-          <article class="skill-card reveal">
-            <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
-            <h3>Git & GitHub</h3>
-            <p>Learning version control, repositories and project publishing.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Things I'm building</span>
-          <h2>Featured <span class="gradient-text">Projects</span></h2>
-          <p>Practical work that helps me apply what I learn.</p>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <div class="project-head">
-              <div class="project-icon"><i class="fa-solid fa-globe"></i></div>
-              <div class="project-links">
-                <a href="https://github.com/YOUR_USERNAME/YOUR_PORTFOLIO_REPO"
-                  target="_blank" rel="noopener noreferrer" aria-label="Portfolio source code">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="#home" aria-label="Portfolio preview">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-            <h3>Personal Portfolio</h3>
-            <p>A responsive personal website to present my background, skills,
-              projects and contact information.</p>
-            <div class="tags">
-              <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-head">
-              <div class="project-icon"><i class="fa-solid fa-droplet"></i></div>
-              <div class="project-links">
-                <a href="https://github.com/YOUR_USERNAME/YOUR_MILK_APP_REPO"
-                  target="_blank" rel="noopener noreferrer" aria-label="Milk dairy app source code">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <h3>Milk Dairy Management App</h3>
-            <p>A Flutter app concept for recording daily milk deliveries,
-              managing customers and keeping entries stored locally.</p>
-            <div class="tags">
-              <span>Flutter</span><span>Dart</span><span>SQLite</span>
-            </div>
-            <div class="project-status">
-              <i class="fa-solid fa-spinner"></i> Work in progress
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-head">
-              <div class="project-icon"><i class="fa-solid fa-terminal"></i></div>
-              <div class="project-links">
-                <a href="https://github.com/YOUR_USERNAME"
-                  target="_blank" rel="noopener noreferrer" aria-label="GitHub projects">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <h3>Programming Practice</h3>
-            <p>A collection of coding exercises to improve my logic,
-              programming fundamentals and problem-solving skills.</p>
-            <div class="tags">
-              <span>Java</span><span>C++</span><span>Python</span>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-head">
-              <div class="project-icon"><i class="fa-solid fa-layer-group"></i></div>
-              <div class="project-links">
-                <a href="https://github.com/YOUR_USERNAME"
-                  target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <h3>Future Projects</h3>
-            <p>More projects will be added here as I learn new technologies
-              and complete practical applications.</p>
-            <div class="tags">
-              <span>Learning</span><span>Building</span><span>Improving</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="education" style="background:#0b101c">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">My background</span>
-          <h2>Education & <span class="gradient-text">Growth</span></h2>
-        </div>
-        <div class="timeline reveal">
-          <div class="timeline-item">
-            <small>Current education</small>
-            <h3>Bachelor of Computer Applications (BCA)</h3>
-            <p>Silver Oak University</p>
-            <p>Building a foundation in computer science, programming and software development.</p>
-          </div>
-          <div class="timeline-item">
-            <small>Ongoing</small>
-            <h3>Independent Learning & Projects</h3>
-            <p>Practising web development, programming and version control through hands-on work.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-box reveal">
-          <span class="eyebrow">Have an opportunity?</span>
-          <h2>Let's build something <span class="gradient-text">great.</span></h2>
-          <p>
-            I'm interested in learning, collaborating on projects and exploring
-            suitable entry-level opportunities in software development.
-          </p>
-          <!-- Replace this address with your real email -->
-          <a class="btn btn-primary" href="mailto:your-email@example.com">
-            <i class="fa-regular fa-envelope"></i> Email Me
-          </a>
-          <div class="socials" style="justify-content:center">
-            <a href="https://github.com/YOUR_USERNAME" target="_blank"
-              rel="noopener noreferrer" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/"
-              target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <a class="logo" href="#home">Rahul<span>.</span></a>
-      <p>Designed & built by Rahul Kesharwani</p>
-      <p>© <span id="year"></span> All rights reserved.</p>
+<main>
+  <div class="mobile-head">
+    <div class="logo">brand<span>pilot.</span></div>
+    <button id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+  <div class="topbar">
+    <div class="breadcrumb">Workspace / <b id="crumb">Overview</b></div>
+    <div class="top-actions">
+      <button class="btn" id="exportBtn">↓ Export Data</button>
+      <button class="btn primary" id="newBtn">+ New Strategy</button>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+  <section id="overview" class="page">
+    <div class="hero">
+      <div class="eyebrow">Your brand, with a clear direction</div>
+      <h1>Build a brand that<br><em>means something.</em></h1>
+      <p>Plan your brand positioning, identify your ideal customers, define your visual identity and create a content strategy from one workspace.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><label>Brand concepts</label><strong id="brandCount">0</strong><small>Saved in this workspace</small></div>
+      <div class="stat"><label>Audience personas</label><strong id="audCount">0</strong><small>Customer profiles</small></div>
+      <div class="stat"><label>Content ideas</label><strong id="contentCount">0</strong><small>Planned content items</small></div>
+      <div class="stat"><label>Campaigns</label><strong id="campaignCount">0</strong><small>Marketing initiatives</small></div>
+    </div>
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.innerHTML = isOpen
-        ? '<i class="fa-solid fa-xmark"></i>'
-        : '<i class="fa-solid fa-bars"></i>';
-    });
+    <div class="section-head"><div><h2>Your strategy toolkit</h2><p>Everything you need to move from idea to execution.</p></div></div>
+    <div class="grid2">
+      <article class="card"><div class="card-top"><div class="icon">◇</div><span class="pill">01 / DISCOVER</span></div><h3>Brand Selection</h3><p>Compare business ideas, evaluate their audience, define your niche and clarify what makes your brand different.</p><div class="tags"><span>Niche</span><span>Positioning</span><span>USP</span></div><button class="btn" data-go="brands">Build brand strategy ↗</button></article>
+      <article class="card"><div class="card-top"><div class="icon">◎</div><span class="pill">02 / UNDERSTAND</span></div><h3>Target Audience</h3><p>Define customer demographics, interests, pain points and buying motivations to create relevant messaging.</p><div class="tags"><span>Personas</span><span>Needs</span><span>Behavior</span></div><button class="btn" data-go="audience">Define your audience ↗</button></article>
+      <article class="card"><div class="card-top"><div class="icon">✳</div><span class="pill">03 / DESIGN</span></div><h3>Brand Identity</h3><p>Set your brand personality, visual direction, color palette, typography and tone of voice.</p><div class="tags"><span>Visuals</span><span>Voice</span><span>Guidelines</span></div><button class="btn" data-go="identity">Create identity ↗</button></article>
+      <article class="card"><div class="card-top"><div class="icon">▦</div><span class="pill">04 / PUBLISH</span></div><h3>Content Planning</h3><p>Organize posts, short videos, educational content and campaigns in a practical publishing calendar.</p><div class="tags"><span>Calendar</span><span>Social</span><span>Campaigns</span></div><button class="btn" data-go="content">Plan your content ↗</button></article>
+    </div>
+  </section>
 
-    document.querySelectorAll("#navLinks a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
-      });
-    });
+  <section id="brands" class="page" hidden>
+    <div class="hero"><div class="eyebrow">01 / Discover</div><h1>Brand <em>Selection</em></h1><p>Document your business concept, ideal market, competitive advantage and brand positioning.</p></div>
+    <div class="card">
+      <h3>Brand Strategy Builder</h3>
+      <div class="form-grid">
+        <div class="field"><label>Brand / Business Name</label><input id="bName" placeholder="e.g. Urban Leaf"></div>
+        <div class="field"><label>Industry / Niche</label><input id="bNiche" placeholder="e.g. Sustainable fashion"></div>
+        <div class="field"><label>Business Model</label><select id="bModel"><option>Online store</option><option>Service business</option><option>Personal brand</option><option>Local business</option><option>SaaS / Technology</option><option>Creator brand</option></select></div>
+        <div class="field"><label>Price Positioning</label><select id="bPrice"><option>Affordable</option><option>Mid-range</option><option>Premium</option><option>Luxury</option></select></div>
+        <div class="field full"><label>Customer Problem</label><textarea id="bProblem" placeholder="What problem does your brand solve?"></textarea></div>
+        <div class="field full"><label>Unique Selling Proposition (USP)</label><textarea id="bUSP" placeholder="Why should customers choose you instead of competitors?"></textarea></div>
+        <div class="field full"><label>Competitors / Alternatives</label><input id="bCompetitors" placeholder="Competitor names or alternatives"></div>
+      </div>
+      <div class="form-actions"><button class="btn primary" id="saveBrand">Save Brand Strategy</button><button class="btn" id="clearBrand">Clear Form</button></div>
+    </div>
+    <div class="section-head"><div><h2>Saved brand concepts</h2><p>Your documented brand ideas.</p></div></div>
+    <div id="brandList" class="grid2"></div>
+  </section>
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <section id="audience" class="page" hidden>
+    <div class="hero"><div class="eyebrow">02 / Understand</div><h1>Know your <em>audience.</em></h1><p>Build customer personas based on real research, interviews and observed customer behavior.</p></div>
+    <div class="card">
+      <h3>Audience Persona Builder</h3>
+      <div class="form-grid">
+        <div class="field"><label>Persona Name</label><input id="aName" placeholder="e.g. Value-conscious buyer"></div>
+        <div class="field"><label>Age Group</label><select id="aAge"><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55+</option><option>All ages</option></select></div>
+        <div class="field"><label>Location</label><input id="aLocation" placeholder="e.g. Ahmedabad, India"></div>
+        <div class="field"><label>Budget / Spending</label><select id="aBudget"><option>Budget-conscious</option><option>Moderate</option><option>Premium</option><option>Varies</option></select></div>
+        <div class="field full"><label>Interests and Behaviors</label><textarea id="aInterests" placeholder="Platforms, interests, habits and buying behavior"></textarea></div>
+        <div class="field full"><label>Pain Points and Needs</label><textarea id="aPain" placeholder="What are they struggling with, and what outcome do they want?"></textarea></div>
+        <div class="field full"><label>Where to Reach Them</label><input id="aChannels" placeholder="Instagram, YouTube, Google Search, local stores..."></div>
+      </div>
+      <div class="form-actions"><button class="btn primary" id="saveAudience">Save Persona</button></div>
+      <p class="notice">Tip: Treat assumptions as hypotheses. Validate them with customer interviews, analytics or surveys before investing in campaigns.</p>
+    </div>
+    <div class="section-head"><div><h2>Audience profiles</h2><p>Personas you've documented.</p></div></div>
+    <div id="audienceList" class="grid2"></div>
+  </section>
 
-    const revealItems = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
+  <section id="identity" class="page" hidden>
+    <div class="hero"><div class="eyebrow">03 / Design</div><h1>Define your brand <em>identity.</em></h1><p>Build a consistent visual and verbal identity customers can recognize across channels.</p></div>
+    <div class="card">
+      <h3>Identity Guidelines</h3>
+      <div class="form-grid">
+        <div class="field"><label>Brand Name</label><input id="iName" placeholder="Your brand name"></div>
+        <div class="field"><label>Brand Personality</label><select id="iPersonality"><option>Modern & Minimal</option><option>Bold & Energetic</option><option>Friendly & Approachable</option><option>Premium & Elegant</option><option>Natural & Trustworthy</option><option>Playful & Creative</option></select></div>
+        <div class="field"><label>Primary Color</label><input id="iPrimary" type="color" value="#c3f36b"></div>
+        <div class="field"><label>Secondary Color</label><input id="iSecondary" type="color" value="#b5a0ff"></div>
+        <div class="field"><label>Typography Direction</label><select id="iFont"><option>Clean sans-serif</option><option>Editorial serif</option><option>Geometric modern</option><option>Classic elegant</option></select></div>
+        <div class="field"><label>Brand Voice</label><select id="iVoice"><option>Clear & Helpful</option><option>Friendly & Conversational</option><option>Expert & Authoritative</option><option>Bold & Provocative</option><option>Premium & Refined</option></select></div>
+        <div class="field full"><label>Brand Mission</label><textarea id="iMission" placeholder="Why does this brand exist?"></textarea></div>
+        <div class="field full"><label>Brand Tagline</label><input id="iTagline" placeholder="A short, memorable brand promise"></div>
+      </div>
+      <div class="form-actions"><button class="btn primary" id="saveIdentity">Save Brand Identity</button></div>
+    </div>
+    <div class="section-head"><div><h2>Visual identity preview</h2><p>Preview your selected color direction.</p></div></div>
+    <div class="card">
+      <div class="palette" id="palette">
+        <div class="swatch" style="background:#c3f36b"><small>#C3F36B</small></div>
+        <div class="swatch" style="background:#b5a0ff"><small>#B5A0FF</small></div>
+        <div class="swatch" style="background:#12151d"><small>#12151D</small></div>
+        <div class="swatch" style="background:#f4f5fa"><small>#F4F5FA</small></div>
+      </div>
+      <h2 id="identityPreview" style="font-size:27px">Your Brand Name</h2>
+      <p id="taglinePreview" class="muted">Your brand promise goes here.</p>
+      <div class="tags" id="identityTags"><span>Modern & Minimal</span><span>Clean sans-serif</span><span>Clear & Helpful</span></div>
+      <div class="form-actions"><button class="btn" id="downloadGuide">↓ Download Identity Guide</button></div>
+    </div>
+  </section>
 
-      revealItems.forEach(item => observer.observe(item));
-    } else {
-      revealItems.forEach(item => item.classList.add("visible"));
+  <section id="content" class="page" hidden>
+    <div class="hero"><div class="eyebrow">04 / Publish</div><h1>Plan content with <em>purpose.</em></h1><p>Connect every post to an audience need, a brand message and a clear business objective.</p></div>
+    <div class="card">
+      <h3>Add a Content Item</h3>
+      <div class="form-grid">
+        <div class="field"><label>Content Title</label><input id="cTitle" placeholder="e.g. 3 mistakes to avoid"></div>
+        <div class="field"><label>Publish Date</label><input id="cDate" type="date"></div>
+        <div class="field"><label>Platform</label><select id="cPlatform"><option>Instagram</option><option>YouTube</option><option>LinkedIn</option><option>Facebook</option><option>TikTok</option><option>Website / Blog</option><option>Other</option></select></div>
+        <div class="field"><label>Format</label><select id="cFormat"><option>Reel / Short</option><option>Carousel</option><option>Static Post</option><option>Story</option><option>Long Video</option><option>Blog Article</option><option>Email</option></select></div>
+        <div class="field"><label>Content Pillar</label><select id="cPillar"><option>Educational</option><option>Entertainment</option><option>Product / Service</option><option>Behind the Scenes</option><option>Social Proof</option><option>Community</option></select></div>
+        <div class="field"><label>Primary Objective</label><select id="cObjective"><option>Awareness</option><option>Engagement</option><option>Leads</option><option>Conversions</option><option>Retention</option></select></div>
+        <div class="field full"><label>Hook / Core Message</label><textarea id="cHook" placeholder="What will make the audience stop, care and act?"></textarea></div>
+        <div class="field full"><label>Call to Action</label><input id="cCTA" placeholder="e.g. Save this post or visit our website"></div>
+      </div>
+      <div class="form-actions"><button class="btn primary" id="saveContent">+ Add to Calendar</button></div>
+    </div>
+    <div class="section-head"><div><h2>Content calendar</h2><p>Change a status as your content moves forward.</p></div><button class="btn" id="exportContent">Export CSV</button></div>
+    <div class="card table-wrap"><table><thead><tr><th>Date</th><th>Content</th><th>Platform</th><th>Format</th><th>Status</th><th></th></tr></thead><tbody id="contentTable"></tbody></table><div class="empty" id="contentEmpty">No content planned yet. Add your first item above.</div></div>
+  </section>
+
+  <section id="campaigns" class="page" hidden>
+    <div class="hero"><div class="eyebrow">05 / Execute</div><h1>Campaign <em>planner.</em></h1><p>Give each marketing initiative a defined goal, target audience, budget and success measure.</p></div>
+    <div class="card">
+      <h3>New Campaign</h3>
+      <div class="form-grid">
+        <div class="field"><label>Campaign Name</label><input id="mName" placeholder="e.g. Product Launch"></div>
+        <div class="field"><label>Campaign Goal</label><select id="mGoal"><option>Brand Awareness</option><option>Engagement</option><option>Lead Generation</option><option>Sales</option><option>Customer Retention</option></select></div>
+        <div class="field"><label>Start Date</label><input id="mStart" type="date"></div>
+        <div class="field"><label>End Date</label><input id="mEnd" type="date"></div>
+        <div class="field"><label>Budget</label><input id="mBudget" type="number" min="0" placeholder="Budget in INR"></div>
+        <div class="field"><label>Success Metric</label><select id="mMetric"><option>Reach / Impressions</option><option>Engagement Rate</option><option>Qualified Leads</option><option>Conversions / Sales</option><option>Website Traffic</option><option>Retention Rate</option></select></div>
+        <div class="field full"><label>Campaign Brief</label><textarea id="mBrief" placeholder="Offer, audience, message, channels and expected outcome"></textarea></div>
+      </div>
+      <div class="form-actions"><button class="btn primary" id="saveCampaign">Save Campaign</button></div>
+    </div>
+    <div class="section-head"><div><h2>Campaigns</h2><p>Track your planned marketing initiatives.</p></div></div>
+    <div id="campaignList" class="grid2"></div>
+  </section>
+
+  <section id="report" class="page" hidden>
+    <div class="hero"><div class="eyebrow">06 / Review</div><h1>Your strategy, <em>in one place.</em></h1><p>Review your documented plans and export your workspace data for further analysis.</p></div>
+    <div class="grid2">
+      <div class="card"><h3>Brand Selection</h3><p id="reportBrands" class="muted">No brand concepts saved.</p></div>
+      <div class="card"><h3>Target Audience</h3><p id="reportAudience" class="muted">No audience personas saved.</p></div>
+      <div class="card"><h3>Brand Identity</h3><p id="reportIdentity" class="muted">No identity guide saved.</p></div>
+      <div class="card"><h3>Content Planning</h3><p id="reportContent" class="muted">No content items saved.</p></div>
+      <div class="card"><h3>Campaign Planner</h3><p id="reportCampaigns" class="muted">No campaigns saved.</p></div>
+    </div>
+    <div class="section-head"><div><h2>Export your work</h2><p>Download your locally saved strategy data as JSON.</p></div></div>
+    <button class="btn primary" id="reportExport">↓ Download Strategy Backup</button>
+    <p class="notice">This dashboard organizes your inputs. It does not automatically research competitors, verify market demand or generate AI insights. Use real customer and market research to validate your strategy.</p>
+  </section>
+
+  <footer class="footer"><span>brandpilot. · Strategy Studio</span><span>Plan clearly. Create consistently.</span></footer>
+</main>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const store = { brands:[], audiences:[], contents:[], campaigns:[], identity:null };
+const fields = {
+  brands:["bName","bNiche","bModel","bPrice","bProblem","bUSP","bCompetitors"],
+  audiences:["aName","aAge","aLocation","aBudget","aInterests","aPain","aChannels"],
+  identity:["iName","iPersonality","iPrimary","iSecondary","iFont","iVoice","iMission","iTagline"],
+  contents:["cTitle","cDate","cPlatform","cFormat","cPillar","cObjective","cHook","cCTA"],
+  campaigns:["mName","mGoal","mStart","mEnd","mBudget","mMetric","mBrief"]
+};
+const read = ids => Object.fromEntries(ids.map(id => [id,$(id).value.trim()]));
+const clear = ids => ids.forEach(id => $(id).value = "");
+const safe = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const empty = text => `<div class="card muted">${text}</div>`;
+
+function saveFile(name, data, type="application/json"){
+  const blob=new Blob([data],{type});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function exportAll(){
+  saveFile("brandpilot-strategy.json",JSON.stringify(store,null,2));
+}
+function updateStats(){
+  $("brandCount").textContent=store.brands.length;
+  $("audCount").textContent=store.audiences.length;
+  $("contentCount").textContent=store.contents.length;
+  $("campaignCount").textContent=store.campaigns.length;
+  $("reportBrands").textContent=store.brands.map(x=>x.bName+" · "+x.bNiche).join("\n")||"No brand concepts saved.";
+  $("reportAudience").textContent=store.audiences.map(x=>x.aName+" · "+x.aLocation).join("\n")||"No audience personas saved.";
+  $("reportIdentity").textContent=store.identity ? store.identity.iName+" · "+store.identity.iPersonality : "No identity guide saved.";
+  $("reportContent").textContent=store.contents.length+" content items planned.";
+  $("reportCampaigns").textContent=store.campaigns.length+" campaigns documented.";
+}
+function renderBrands(){
+  $("brandList").innerHTML=store.brands.map(x=>`
+  <article class="card"><div class="card-top"><div class="icon">◇</div><button class="delete" data-delete="brands" data-id="${x.id}">Delete</button></div>
+  <h3>${safe(x.bName)}</h3><p>${safe(x.bNiche)} · ${safe(x.bModel)} · ${safe(x.bPrice)}</p>
+  <p style="margin-top:10px"><b>Customer problem:</b> ${safe(x.bProblem||"Not specified")}</p>
+  <p style="margin-top:8px"><b>USP:</b> ${safe(x.bUSP||"Not specified")}</p>
+  <div class="tags"><span>Brand strategy</span><span>Positioning</span></div></article>`).join("")||empty("No brand concepts yet. Save your first brand strategy above.");
+}
+function renderAudience(){
+  $("audienceList").innerHTML=store.audiences.map(x=>`
+  <article class="card"><div class="card-top"><div class="icon">◎</div><button class="delete" data-delete="audiences" data-id="${x.id}">Delete</button></div>
+  <h3>${safe(x.aName)}</h3><p>${safe(x.aAge)} · ${safe(x.aLocation)} · ${safe(x.aBudget)}</p>
+  <p style="margin-top:10px"><b>Interests:</b> ${safe(x.aInterests||"Not specified")}</p>
+  <p style="margin-top:8px"><b>Needs:</b> ${safe(x.aPain||"Not specified")}</p>
+  <div class="tags">${safe(x.aChannels||"Channels not specified").split(",").map(s=>`<span>${safe(s.trim())}</span>`).join("")}</div></article>`).join("")||empty("No personas yet. Document your first audience profile above.");
+}
+function renderContents(){
+  $("contentTable").innerHTML=store.contents.map(x=>`<tr>
+  <td>${safe(x.cDate||"Not set")}</td><td>${safe(x.cTitle)}<br><span style="color:#9299ac">${safe(x.cPillar)}</span></td>
+  <td>${safe(x.cPlatform)}</td><td>${safe(x.cFormat)}</td>
+  <td><select data-status="${x.id}" aria-label="Content status">
+  ${["Idea","Planned","In Progress","Published"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join("")}</select></td>
+  <td><button class="delete" data-delete="contents" data-id="${x.id}">✕</button></td></tr>`).join("");
+  $("contentEmpty").style.display=store.contents.length?"none":"block";
+}
+function renderCampaigns(){
+  $("campaignList").innerHTML=store.campaigns.map(x=>`<article class="card">
+  <div class="card-top"><div class="icon">↗</div><span class="pill">${safe(x.mGoal)}</span></div>
+  <h3>${safe(x.mName)}</h3><p>${safe(x.mStart||"Start TBD")} → ${safe(x.mEnd||"End TBD")}</p>
+  <p style="margin-top:10px">Budget: ₹${safe(x.mBudget||"0")} · KPI: ${safe(x.mMetric)}</p>
+  <p style="margin-top:8px">${safe(x.mBrief||"No brief provided")}</p>
+  <button class="delete" data-delete="campaigns" data-id="${x.id}">Delete campaign</button></article>`).join("")||empty("No campaigns yet. Create your first campaign above.");
+}
+function renderIdentity(){
+  const x=store.identity;if(!x)return;
+  $("iName").value=x.iName||"";
+  $("iPersonality").value=x.iPersonality||"Modern & Minimal";
+  $("iPrimary").value=x.iPrimary||"#c3f36b";
+  $("iSecondary").value=x.iSecondary||"#b5a0ff";
+  $("iFont").value=x.iFont||"Clean sans-serif";
+  $("iVoice").value=x.iVoice||"Clear & Helpful";
+  $("iMission").value=x.iMission||"";
+  $("iTagline").value=x.iTagline||"";
+  previewIdentity();
+}
+function previewIdentity(){
+  const primary=$("iPrimary").value,secondary=$("iSecondary").value;
+  $("palette").innerHTML=[primary,secondary,"#12151d","#f4f5fa"].map(c=>
+    `<div class="swatch" style="background:${c}"><small>${c.toUpperCase()}</small></div>`).join("");
+  $("identityPreview").textContent=$("iName").value||"Your Brand Name";
+  $("identityPreview").style.color=primary;
+  $("taglinePreview").textContent=$("iTagline").value||"Your brand promise goes here.";
+  $("identityTags").innerHTML=[$("iPersonality").value,$("iFont").value,$("iVoice").value].map(s=>`<span>${safe(s)}</span>`).join("");
+}
+function persist(){
+  try{
+    localStorage.setItem("brandpilot-data-v1",JSON.stringify(store));
+  }catch(e){
+    alert("Browser storage is unavailable. Please export your strategy backup.");
+  }
+  updateStats();renderBrands();renderAudience();renderContents();renderCampaigns();
+}
+function load(){
+  try{
+    const saved=localStorage.getItem("brandpilot-data-v1");
+    if(saved){
+      const data=JSON.parse(saved);
+      for(const k of Object.keys(store)){
+        if(k in data)store[k]=data[k];
+      }
     }
-  </script>
+  }catch(e){console.warn("Could not load saved workspace",e);}
+  renderIdentity();persist();
+}
+function navigate(page){
+  document.querySelectorAll(".page").forEach(p=>p.hidden=p.id!==page);
+  document.querySelectorAll(".nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+  const btn=document.querySelector(`.nav button[data-page="${page}"]`);
+  const card=document.querySelector(`[data-go="${page}"]`);
+  $("crumb").textContent=btn?btn.textContent.trim():page==="overview"?"Overview":page;
+  $("sidebar").classList.remove("open");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.page)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.go)));
+$("menuBtn").addEventListener("click",()=>$("sidebar").classList.toggle("open"));
+$("newBtn").addEventListener("click",()=>navigate("brands"));
+$("exportBtn").addEventListener("click",exportAll);
+$("reportExport").addEventListener("click",exportAll);
+
+$("saveBrand").addEventListener("click",()=>{
+ const x=read(fields.brands);
+ if(!x.bName||!x.bNiche){alert("Enter a brand name and niche first.");return;}
+ x.id=uid();store.brands.push(x);clear(fields.brands);persist();
+});
+$("clearBrand").addEventListener("click",()=>clear(fields.brands));
+
+$("saveAudience").addEventListener("click",()=>{
+ const x=read(fields.audiences);
+ if(!x.aName||!x.aLocation){alert("Enter a persona name and location first.");return;}
+ x.id=uid();store.audiences.push(x);clear(fields.audiences);persist();
+});
+$("saveIdentity").addEventListener("click",()=>{
+ const x=read(fields.identity);
+ if(!x.iName){alert("Enter your brand name first.");return;}
+ store.identity=x;persist();previewIdentity();alert("Brand identity saved.");
+});
+["iName","iPersonality","iPrimary","iSecondary","iFont","iVoice","iTagline"].forEach(id=>$(id).addEventListener("input",previewIdentity));
+$("downloadGuide").addEventListener("click",()=>{
+ if(!store.identity){alert("Save your brand identity first.");return;}
+ saveFile("brand-identity-guide.json",JSON.stringify(store.identity,null,2));
+});
+$("saveContent").addEventListener("click",()=>{
+ const x=read(fields.contents);
+ if(!x.cTitle){alert("Enter a content title first.");return;}
+ x.id=uid();x.status="Idea";store.contents.push(x);clear(fields.contents);persist();
+});
+$("saveCampaign").addEventListener("click",()=>{
+ const x=read(fields.campaigns);
+ if(!x.mName){alert("Enter a campaign name first.");return;}
+ if(x.mStart&&x.mEnd&&x.mEnd<x.mStart){alert("End date must be after the start date.");return;}
+ x.id=uid();store.campaigns.push(x);clear(fields.campaigns);persist();
+});
+document.addEventListener("click",e=>{
+ const del=e.target.closest("[data-delete]");
+ if(del){
+   const {delete:which,id}=del.dataset;
+   if(confirm("Delete this item?")){
+     store[which]=store[which].filter(x=>x.id!==id);persist();
+   }
+ }
+});
+document.addEventListener("change",e=>{
+ if(e.target.matches("[data-status]")){
+   const item=store.contents.find(x=>x.id===e.target.dataset.status);
+   if(item){item.status=e.target.value;persist();}
+ }
+});
+$("exportContent").addEventListener("click",()=>{
+ const cols=["cDate","cTitle","cPlatform","cFormat","cPillar","cObjective","cHook","cCTA","status"];
+ const csv=[cols.join(","),...store.contents.map(x=>cols.map(k=>'"'+String(x[k]||"").replace(/"/g,'""')+'"').join(","))].join("\r\n");
+ saveFile("content-calendar.csv",csv,"text/csv;charset=utf-8");
+});
+$("cDate").value=new Date().toISOString().slice(0,10);
+load();
+</script>
 </body>
 </html>
